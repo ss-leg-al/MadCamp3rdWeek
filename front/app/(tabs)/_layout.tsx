@@ -7,7 +7,7 @@ export default function TabsLayout() {
       screenOptions={{
         headerStyle: { backgroundColor: '#444' },
         headerTintColor: '#fff',
-        tabBarStyle: { backgroundColor: '#333' },
+        tabBarStyle: { backgroundColor: 'white' },
         tabBarActiveTintColor: 'tomato',
         headerShown: false, // 헤더 숨김
         

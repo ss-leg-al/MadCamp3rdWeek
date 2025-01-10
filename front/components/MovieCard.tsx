@@ -6,17 +6,22 @@ export default function MovieCard({ movie }) {
   const router = useRouter();
 
   return (
+    <View >
     <TouchableOpacity
       style={styles.card}
+      activeOpacity={0.8}
       onPress={() => router.push(`/detail/${movie.id}`)} 
     >
       <Image source={movie.poster} style={styles.poster} />
+      </TouchableOpacity>
       <Text style={styles.title} numberOfLines={1}>{movie.title}</Text>
-    </TouchableOpacity>
+
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+    
   card: {
     width: 120,
     marginRight: 12,
@@ -31,6 +36,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 14,
-    fontWeight: '600'
+    fontWeight: '600',
+    textAlign: 'center'
   },
 });

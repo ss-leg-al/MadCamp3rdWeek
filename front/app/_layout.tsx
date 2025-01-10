@@ -7,6 +7,7 @@ export default function RootLayout() {
       screenOptions={{
         headerStyle: { backgroundColor: '#DC143C' },
         headerTintColor: '#fff',
+        headerShown: false, // 헤더 숨김
   
       }}
     >
