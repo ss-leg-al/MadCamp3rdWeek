@@ -1,4 +1,8 @@
-{
+{  "infoPlist": {
+    "NSAppTransportSecurity": {
+    "NSAllowsArbitraryLoads": true
+  }
+  },  
   "expo": {
     "name": "front",
     "slug": "front",
