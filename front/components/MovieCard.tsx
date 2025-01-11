@@ -10,7 +10,7 @@ export default function MovieCard({ movie }) {
     <TouchableOpacity
       style={styles.card}
       activeOpacity={0.8}
-      onPress={() => router.push(`/detail/${movie.id}`)} 
+      onPress={() => router.push(`/(detail)/${movie.id}`)} 
     >
       <Image source={movie.poster} style={styles.poster} />
       </TouchableOpacity>

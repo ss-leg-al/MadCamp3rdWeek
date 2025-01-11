@@ -3,9 +3,9 @@ import MovieCard from '@/components/MovieCard';
 import CustomHeader from '@/components/CustomHeader';
 
 const nowPlayingMovies = [
-  { id: '1', title: 'Avengers', poster: require('@/assets/images/avengers.jpeg') },
-  { id: '2', title: 'Spider-Man', poster: require('@/assets/images/spiderman.jpeg') },
-  { id: '3', title: 'Frozen 2', poster: require('@/assets/images/frozen2.jpeg') },
+  { id: '1', title: '어벤져스', poster: require('@/assets/images/avengers.jpeg') },
+  { id: '2', title: '스파이더맨', poster: require('@/assets/images/spiderman.jpeg') },
+  { id: '3', title: '겨울왕국 2', poster: require('@/assets/images/frozen2.jpeg') },
 ];
 
 export default function NowPlayingScreen() {
@@ -59,7 +59,7 @@ export default function NowPlayingScreen() {
             showsHorizontalScrollIndicator={false}
           />
         </View>
-        
+
       </ScrollView>
     </View>
   );
