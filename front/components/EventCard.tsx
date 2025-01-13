@@ -25,7 +25,7 @@ export default function EventCard({ event }) {
       <Image source={event.image} style={styles.image} />
       <View style={styles.cardContent}>
         <Text style={styles.title}>{truncateText(event.title, 10)}</Text>
-        <Text style={styles.period}>기간: {event.period}</Text>
+        <Text style={styles.period}>{event.period}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -33,7 +33,7 @@ export default function EventCard({ event }) {
 
 const styles = StyleSheet.create({
   card: {
-    width: 200,
+    width: 170,
     marginRight: 12,
     backgroundColor: '#fff',
     borderRadius: 12,

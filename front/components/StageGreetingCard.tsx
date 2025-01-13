@@ -26,8 +26,8 @@ export default function StageGreetingCard({ greeting }) {
         <Image source={greeting.image} style={styles.image} />
       </View>
       <View style={styles.cardContent}>
-        <Text style={styles.title}>{truncateText(greeting.title, 10)}</Text>
-        <Text style={styles.period}>기간: {greeting.period}</Text>
+        <Text style={styles.title}>{truncateText(greeting.title, 14)}</Text>
+        <Text style={styles.period}> {greeting.period}</Text>
       </View>
     </TouchableOpacity>
   );

@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
       },
   headerText: {
     color: '#DC143C',
+
     fontSize: 18,
     fontWeight: 'bold',
   },
