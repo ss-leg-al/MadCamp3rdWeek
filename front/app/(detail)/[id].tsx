@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import Header from '@/components/Header';
-
-// 로컬에 있는 영화 목록
 const nowPlayingMovies = [
-  { id: '1', title: '하얼빈', poster: require('@/assets/images/1.jpg'),description:'하이' },
+  { id: '1', title: '하얼빈', poster: require('@/assets/images/1.jpg'),description:'감독 : 우민호 장르 : 드라마 / 113 분 등급 : 15세이상관람가\n개봉일 : 2024.12.24 출연진 : 현빈, 박정민, 조우진, 전여빈, 박훈, 유재명, 릴리 프랭키, 이동욱' },
   { id: '2', title: '동화지만 청불입니다', poster: require('@/assets/images/2.jpg'),description:'하이' },
   { id: '3', title: '페라리', poster: require('@/assets/images/3.jpg'),description:'하이' },
   { id: '4', title: '서브스턴스', poster: require('@/assets/images/4.jpg'),description:'하이' },
@@ -26,7 +24,7 @@ const nowPlayingMovies = [
 export default function MovieDetailScreen() {
   const { id } = useLocalSearchParams(); // 예: { id: '3' }
 
-  // 선택한 영화 정보 찾기
+  // 선택한 영화 정보
   const movie = nowPlayingMovies.find((item) => item.id === id) || {
     title: '영화 정보 없음',
     poster: null,
@@ -37,14 +35,12 @@ export default function MovieDetailScreen() {
   const [movieSchedules, setMovieSchedules] = useState([]);
 
   useEffect(() => {
-    // 영화제목이 정상적으로 있을 때만 요청
     if (!movie.title || movie.title === '영화 정보 없음') return;
 
     const fetchMovieSchedules = async () => {
       try {
-        // 실제 좌표는 기기 위치나, 다른 로직으로 가져올 수 있습니다.
-        const latitude = 37.5561;
-        const longitude = 126.9259;
+        const latitude = 37.52912;
+        const longitude = 126.9654;
 
         const response = await fetch(
           `http://192.249.29.183:3000/api/theaters?latitude=${latitude}&longitude=${longitude}&movieName=${encodeURIComponent(
@@ -52,8 +48,6 @@ export default function MovieDetailScreen() {
           )}`
         );
         const data = await response.json();
-
-        // movieSchedules: [{ theaterName: string, schedules: [...] }, ... ]
         setMovieSchedules(data.movieSchedules || []);
       } catch (error) {
         console.error('영화관 스케줄 불러오기 에러:', error);
@@ -62,6 +56,16 @@ export default function MovieDetailScreen() {
 
     fetchMovieSchedules();
   }, [movie.title]);
+
+  // movieSchedules 펼쳐서(flatMap) -> 시간 순 정렬
+  const sortedSchedules = movieSchedules
+    .flatMap((theater) =>
+      theater.schedules.map((schedule) => ({
+        theaterName: theater.theaterName,
+        ...schedule,
+      }))
+    )
+    .sort((a, b) => a.StartTime.localeCompare(b.StartTime));
 
   return (
     <View style={styles.container}>
@@ -78,31 +82,34 @@ export default function MovieDetailScreen() {
 
       {/* 서버에서 받아온 상영 시간 / 극장 리스트 */}
       <View style={styles.showtimesList}>
-        {movieSchedules.length === 0 ? (
+        {sortedSchedules.length === 0 ? (
           <Text>상영 정보를 불러오는 중입니다...</Text>
         ) : (
           <FlatList
-            data={movieSchedules}
-            keyExtractor={(item) => item.theaterName}
+            data={sortedSchedules}
+            keyExtractor={(item, index) => `${item.theaterName}-${item.StartTime}-${index}`}
             renderItem={({ item }) => (
-              <View style={styles.theaterBlock}>
-                {/* 극장 이름 */}
-                <Text style={styles.theaterName}>{item.theaterName}</Text>
-                {/* 이 극장에서 상영하는 시간표 */}
-                {item.schedules.map((schedule, index) => (
-                  <View style={styles.listItem} key={`${schedule.StartTime}-${index}`}>
-                    <View style={styles.showtimeBox}>
-                      <Text style={styles.showtimeText}>{schedule.StartTime}</Text>
-                    </View>
-                    <View style={styles.theaterInfo}>
-                      <Text style={styles.screenName}>{schedule.ScreenName}</Text>
-                      <Text style={styles.distance}>{schedule.Distance}</Text>
-                      <Text style={styles.seats}>
-                        예매좌석: {schedule.BookingSeatCount} / 총 {schedule.TotalSeatCount}
-                      </Text>
-                    </View>
+              <View style={styles.listItem}>
+                {/* 상영 시작 시간 박스 */}
+                <View style={styles.showtimeBox}>
+                  <Text style={styles.showtimeText}>{item.StartTime}</Text>
+                </View>
+
+                {/* 영화관/상영관/거리/좌석수 (2줄) */}
+                <View style={styles.theaterInfo}>
+                  {/* 첫 줄: 영화관 이름 (왼쪽), 거리(오른쪽) */}
+                  <View style={styles.rowTop}>
+                    <Text style={styles.theaterName}>{item.theaterName}</Text>
+                    <Text style={styles.distance}>{item.Distance}</Text>
                   </View>
-                ))}
+                  {/* 둘째 줄: 상영관(왼쪽), 좌석수(오른쪽) */}
+                  <View style={styles.rowBottom}>
+                    <Text style={styles.screenName}>{item.ScreenName}</Text>
+                    <Text style={styles.seats}>
+                      <Text style={styles.bookingSeatCount}>{item.BookingSeatCount}</Text> / {item.TotalSeatCount}
+                    </Text>
+                  </View>
+                </View>
               </View>
             )}
           />
@@ -157,29 +164,23 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
   },
-  theaterBlock: {
-    marginBottom: 20,
-  },
-  theaterName: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 8,
-  },
+
+  // 한 행(listItem)
   listItem: {
     flexDirection: 'row',
-    paddingVertical: 8,
+    alignItems: 'flex-start',
+    paddingVertical: 12, // 원하는 만큼 높이 조절
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
   },
   showtimeBox: {
     backgroundColor: '#DC143C',
-    width: 80,
-    height: 30,
+    width: 70,
+    height: 28,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
-    marginRight: 8,
+    marginRight: 12,
   },
   showtimeText: {
     color: '#fff',
@@ -187,22 +188,42 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   theaterInfo: {
-    flex: 3,
+    flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
   },
-  screenName: {
+
+  // 첫 줄 (영화관 왼쪽, 거리 오른쪽)
+  rowTop: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 4,
+  },
+  theaterName: {
     fontSize: 14,
-    fontWeight: '600',
+    fontWeight: 'bold',
     color: '#333',
   },
   distance: {
     fontSize: 12,
     color: '#666',
-    marginVertical: 2,
+  },
+
+  // 둘째 줄 (상영관 왼쪽, 좌석수 오른쪽)
+  rowBottom: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 2,
+  },
+  screenName: {
+    fontSize: 14,
+    color: '#333',
   },
   seats: {
     fontSize: 12,
     color: '#666',
+  },
+  bookingSeatCount: {
+    color: 'green',
   },
 });

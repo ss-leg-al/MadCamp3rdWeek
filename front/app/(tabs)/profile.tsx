@@ -45,7 +45,7 @@ export default function ChatbotScreen() {
 
   return (
     <View style={styles.container}>
-      <CustomHeader title="CINEMACHECK" />
+      <CustomHeader title="" />
       <ScrollView style={styles.chatContainer}>
         {messages
         .filter((message) => message.role !== 'system') // system 메시지 필터링
