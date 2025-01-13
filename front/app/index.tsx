@@ -12,7 +12,7 @@ export default function HomeScreen() {
         // source={{ uri: 'https://your-image-url.com/logo.png' }} // URL 이미지
         style={styles.logo}
       />
-       <TouchableOpacity style={styles.button} onPress={() => router.replace('/(tabs)')}>
+       <TouchableOpacity style={styles.button} onPress={() => router.replace('/getUserLocation')}>
         <Text style={styles.buttonText}>시작하기</Text>
       </TouchableOpacity>
     </View>

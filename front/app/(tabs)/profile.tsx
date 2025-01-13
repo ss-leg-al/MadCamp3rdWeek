@@ -25,7 +25,7 @@ export default function ChatbotScreen() {
           Authorization: `Bearer `, // 키를 직접 삽입
         },
         body: JSON.stringify({
-          model: 'gpt-4',
+          model: 'gpt-4o',
           messages: updatedMessages,
         }),
       });
