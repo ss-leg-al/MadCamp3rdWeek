@@ -3,11 +3,11 @@ import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import Header from '@/components/Header';
 const nowPlayingMovies = [
-  { id: '1', title: '하얼빈', poster: require('@/assets/images/1.jpg'),description:'감독 : 우민호 장르 : 드라마 / 113 분 등급 : 15세이상관람가\n개봉일 : 2024.12.24 출연진 : 현빈, 박정민, 조우진, 전여빈, 박훈, 유재명, 릴리 프랭키, 이동욱' },
-  { id: '2', title: '동화지만 청불입니다', poster: require('@/assets/images/2.jpg'),description:'하이' },
-  { id: '3', title: '페라리', poster: require('@/assets/images/3.jpg'),description:'하이' },
-  { id: '4', title: '서브스턴스', poster: require('@/assets/images/4.jpg'),description:'하이' },
-  { id: '5', title: '데드데드 데몬즈 디디디디 디스트럭션: 파트1', poster: require('@/assets/images/5.jpg'),description:'하이' },
+  { id: '1', title: '하얼빈', poster: require('@/assets/images/1.jpg'),description:'감독 : 우민호 \n장르 : 드라마 / 113 분 \n등급 : 15세이상관람가\n개봉일 : 2024.12.24\n출연진 : 현빈, 박정민, 조우진, 전여빈, 박훈, 유재명, 릴리 프랭키, 이동욱' },
+  { id: '2', title: '동화지만 청불입니다', poster: require('@/assets/images/2.jpg'),description:'감독 : 이종석 \n장르 : 코미디 / 109 분 \n등급 : 청소년관람불가 \n개봉일 : 2025.01.08 \n출연진 : 박지현, 최시원, 성동일' },
+  { id: '3', title: '페라리', poster: require('@/assets/images/3.jpg'),description:'감독 : 마이클 만 \n장르 : 드라마, 액션 / 130 분 \n등급 : 15세이상관람가 \n개봉일 : 2025.01.08\n출연진 : 아담 드라이버, 페넬로페 크루즈, 쉐일린 우들리' },
+  { id: '4', title: '서브스턴스', poster: require('@/assets/images/4.jpg'),description:'감독 : 코랄리 파르쟈 \n장르 : 스릴러 / 140 분 \n등급 : 청소년관람불가 \n개봉일 : 2024.12.11\n출연진 : 데미 무어, 마가렛 퀄리, 데니스 퀘이드' },
+  { id: '5', title: '데드데드 데몬즈 디디디디 디스트럭션: 파트1', poster: require('@/assets/images/5.jpg'),description:'장르 : 애니메이션 / 120 분 \n등급 : 15세이상관람가 \n개봉일 : 2025.01.08\n출연진 : 이쿠타 리라, 아노, 타네자키 아츠미, 시마부쿠로 미유리, 오오키 사에코, 와키 아즈미, 시라이시 료코, 이리노 미유, 우치야마 코우키, 반 타이토, 스와베 준이치, 츠다 켄지로, 카와니시 켄고, 다케나카 나오토' },
   { id: '6', title: '더 폴: 디렉터스 컷', poster: require('@/assets/images/6.jpg'),description:'하이' },
   { id: '7', title: '소방관', poster: require('@/assets/images/7.jpg'),description:'하이' },
   { id: '8', title: '위키드', poster: require('@/assets/images/8.jpg'),description:'하이' },
@@ -39,11 +39,13 @@ export default function MovieDetailScreen() {
 
     const fetchMovieSchedules = async () => {
       try {
-        const latitude = 37.52912;
-        const longitude = 126.9654;
+        //const latitude = 37.52912;
+        //const longitude = 126.9654;
+        const latitude=37.5561
+        const longitude=126.9259;
 
         const response = await fetch(
-          `http://192.249.29.183:3000/api/theaters?latitude=${latitude}&longitude=${longitude}&movieName=${encodeURIComponent(
+          `http://192.249.29.200:3000/api/theaters?latitude=${latitude}&longitude=${longitude}&movieName=${encodeURIComponent(
             movie.title
           )}`
         );

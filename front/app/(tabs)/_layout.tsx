@@ -15,7 +15,7 @@ export default function TabsLayout() {
           position: 'absolute', // 탭 바를 화면 위로 띄우기 (필요시)
           bottom: 0, // 화면 하단에 고정
         },
-        tabBarActiveTintColor: 'tomato',
+        tabBarActiveTintColor: '#DC143C',
         headerShown: false,
       }}
     >

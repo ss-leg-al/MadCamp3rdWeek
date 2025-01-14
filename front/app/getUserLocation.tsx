@@ -33,31 +33,33 @@ export default function GetUserLocation() {
     <View style={styles.container}>
       <CustomHeader title="CINEMACHECK" />
       <View style={styles.mapContainer}>
-        {location ? (
-          <MapView
-            style={styles.map}
-            initialRegion={{
-              latitude: location.coords.latitude,
-              longitude: location.coords.longitude,
-              latitudeDelta: 0.01,
-              longitudeDelta: 0.01,
-            }}
-          >
-            <Marker
-              coordinate={{
+        <View style={styles.roundedMapContainer}>
+          {location ? (
+            <MapView
+              style={styles.map}
+              initialRegion={{
                 latitude: location.coords.latitude,
                 longitude: location.coords.longitude,
+                latitudeDelta: 0.01,
+                longitudeDelta: 0.01,
               }}
-              title="현재 위치"
-              description="여기가 현재 위치입니다."
-            />
-          </MapView>
-        ) : (
-          <Text style={styles.loadingText}>위치를 불러오는 중...</Text>
-        )}
+            >
+              <Marker
+                coordinate={{
+                  latitude: location.coords.latitude,
+                  longitude: location.coords.longitude,
+                }}
+                title="현재 위치"
+                description="여기가 현재 위치입니다."
+              />
+            </MapView>
+          ) : (
+            <Text style={styles.loadingText}>위치를 불러오는 중...</Text>
+          )}
+        </View>
       </View>
       <View style={styles.content}>
-        <Text style={styles.confirmationText}>현재 위치가 맞으신가요?</Text>
+        <Text style={styles.confirmationText}>현재 위치를 확인해주세요</Text>
         <TouchableOpacity style={styles.nextButton} onPress={handleNext}>
           <Text style={styles.nextButtonText}>확인</Text>
         </TouchableOpacity>
@@ -72,8 +74,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffff',
   },
   mapContainer: {
-    marginTop:80,
+    marginTop: 100,
     flex: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  roundedMapContainer: {
+    width: '90%',
+    height: '100%',
+    borderRadius: 25, // 둥근 모서리 설정
+    overflow: 'hidden', // 자식 컴포넌트가 부모의 경계를 넘지 않도록 설정
   },
   map: {
     width: '100%',
@@ -95,7 +105,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: '#333',
-    marginBottom: 16,
+    marginBottom: 24,
     textAlign: 'center',
   },
   nextButton: {
