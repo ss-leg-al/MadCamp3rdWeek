@@ -6,7 +6,8 @@ import {
   Image, 
   FlatList, 
   TouchableOpacity,
-  Modal
+  Modal,
+  Linking
 } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import Header from '@/components/Header';
@@ -31,9 +32,6 @@ function getFormattedDate(offset = 0) {
 }
 
 // 날짜 라벨(예: "1/14(오늘)")
-// offset === 0 → "1/14(오늘)"
-// offset === 1 → "1/15(내일)"
-// offset === 2 → "1/16(모레)"
 function getDateLabel(offset = 0) {
   const base = getMonthDay(offset);
   if (offset === 0) return `${base}(오늘)`;
@@ -41,6 +39,7 @@ function getDateLabel(offset = 0) {
   if (offset === 2) return `${base}(모레)`;
   return base;
 }
+
 const nowPlayingMovies = [
   { id: '1', title: '하얼빈', poster: require('@/assets/images/1.jpg'),description:'감독 : 우민호 \n장르 : 드라마 / 113 분 \n등급 : 15세이상관람가\n개봉일 : 2024.12.24\n출연진 : 현빈, 박정민, 조우진, 전여빈, 박훈, 유재명, 릴리 프랭키, 이동욱' },
   { id: '2', title: '동화지만 청불입니다', poster: require('@/assets/images/2.jpg'),description:'감독 : 이종석 \n장르 : 코미디 / 109 분 \n등급 : 청소년관람불가 \n개봉일 : 2025.01.08 \n출연진 : 박지현, 최시원, 성동일' },
@@ -59,7 +58,6 @@ const nowPlayingMovies = [
   { id: '15', title: '시빌 워: 분열의 시대', poster: require('@/assets/images/15.jpg'),description:'하이' },
 
 ];
-
 export default function MovieDetailScreen() {
   const { id } = useLocalSearchParams(); 
 
@@ -72,20 +70,16 @@ export default function MovieDetailScreen() {
 
   // offset 0=오늘, 1=내일, 2=모레
   const [selectedOffset, setSelectedOffset] = useState(0);
-  // 실제 API 호출 시 쓸 YYYYMMDD
   const selectedDate = getFormattedDate(selectedOffset);
 
-  // 서버 스케줄
   const [movieSchedules, setMovieSchedules] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // 헤더 눌렀을 때 뜨는 모달 (날짜 선택)
   const [showDateModal, setShowDateModal] = useState(false);
 
   // 날짜 라벨 (ex: "1/14(오늘)")
   const headerDateLabel = getDateLabel(selectedOffset);
 
-  // API 호출
   useEffect(() => {
     if (movie.title === '영화 정보 없음') return;
 
@@ -94,7 +88,6 @@ export default function MovieDetailScreen() {
         setIsLoading(true);
         const latitude = 37.5561;
         const longitude = 126.9259;
-        // date=selectedDate
         const response = await fetch(
           `http://192.249.29.200:3000/api/theaters?latitude=${latitude}&longitude=${longitude}&movieName=${encodeURIComponent(
             movie.title
@@ -112,15 +105,15 @@ export default function MovieDetailScreen() {
     fetchMovieSchedules();
   }, [movie.title, selectedDate]);
 
-  // 날짜 변경 함수
+  // 날짜 변경
   const handleOffsetChange = (offset) => {
     setSelectedOffset(offset);
-    setShowDateModal(false); // 모달 닫기
+    setShowDateModal(false);
   };
 
   // 스케줄 정렬
   const sortedSchedules = movieSchedules
-    .flatMap((theater) => 
+    .flatMap((theater) =>
       theater.schedules.map((schedule) => ({
         theaterName: theater.theaterName,
         ...schedule,
@@ -128,27 +121,46 @@ export default function MovieDetailScreen() {
     )
     .sort((a, b) => a.StartTime.localeCompare(b.StartTime));
 
-  // 헤더를 눌렀을 때 → 모달 열기
   const handleHeaderPress = () => {
     setShowDateModal(true);
   };
 
+  // 특정 영화관 사이트로 이동
+  const openTheaterWebsite = async (theaterName) => {
+    let url = '';
+
+    if (theaterName.includes('CGV')) {
+      url = 'http://www.cgv.co.kr/ticket/';
+    } else if (theaterName.includes('메가박스')) {
+      url = 'https://www.megabox.co.kr/booking';
+    } else if (theaterName.includes('롯데시네마')) {
+      url = 'https://www.lottecinema.co.kr/NLCHS/Ticketing';
+    } else {
+      return; // 해당 안 되면 아무 동작 안 함 (또는 alert 등)
+    }
+
+    // Linking
+    try {
+      const supported = await Linking.canOpenURL(url);
+      if (supported) {
+        await Linking.openURL(url);
+      } else {
+        console.error('Cannot open URL:', url);
+      }
+    } catch (error) {
+      console.error('Error opening URL:', error);
+    }
+  };
+
   return (
     <View style={styles.container}>
-      {/* 
-        Header 컴포넌트에
-        우리가 만든 headerDateLabel (ex: "1/14(오늘)")을 title로 표시.
-        + TouchableOpacity로 감싸거나,
-        Header 자체에 onPress 설정 가능(구현 방식에 따라 다름).
-      */}
       <TouchableOpacity onPress={handleHeaderPress} activeOpacity={0.7}>
-              <Header
-                  title={headerDateLabel}
-                  onTitlePress={() => setShowDateModal(true)}
-                />
+        <Header
+          title={headerDateLabel}
+          onTitlePress={() => setShowDateModal(true)}
+        />
       </TouchableOpacity>
 
-      {/* 영화 정보 */}
       <View style={styles.movieInfo}>
         {movie.poster && <Image source={movie.poster} style={styles.poster} />}
         <View style={styles.textContainer}>
@@ -166,31 +178,28 @@ export default function MovieDetailScreen() {
         ) : (
           <FlatList
             data={sortedSchedules}
-            keyExtractor={(item, index) => 
-              `${item.theaterName}-${item.StartTime}-${index}`
-            }
+            keyExtractor={(item, index) => `${item.theaterName}-${item.StartTime}-${index}`}
             renderItem={({ item }) => (
-              <View style={styles.listItem}>
-                <View style={styles.showtimeBox}>
-                  <Text style={styles.showtimeText}>{item.StartTime}</Text>
-                </View>
-                <View style={styles.theaterInfo}>
-                  <View style={styles.rowTop}>
-                    <Text style={styles.theaterName}>{item.theaterName}</Text>
-                    <Text style={styles.distance}>{item.Distance}</Text>
+              // 터치 시 openTheaterWebsite 호출
+              <TouchableOpacity onPress={() => openTheaterWebsite(item.theaterName)}>
+                <View style={styles.listItem}>
+                  <View style={styles.showtimeBox}>
+                    <Text style={styles.showtimeText}>{item.StartTime}</Text>
                   </View>
-                  <View style={styles.rowBottom}>
-                    <Text style={styles.screenName}>{item.ScreenName}</Text>
-                    <Text style={styles.seats}>
-                      <Text style={styles.bookingSeatCount}>
-                        {item.BookingSeatCount}
+                  <View style={styles.theaterInfo}>
+                    <View style={styles.rowTop}>
+                      <Text style={styles.theaterName}>{item.theaterName}</Text>
+                      <Text style={styles.distance}>{item.Distance}</Text>
+                    </View>
+                    <View style={styles.rowBottom}>
+                      <Text style={styles.screenName}>{item.ScreenName}</Text>
+                      <Text style={styles.seats}>
+                        <Text style={styles.bookingSeatCount}>{item.BookingSeatCount}</Text> / {item.TotalSeatCount}
                       </Text>
-                      {' / '}
-                      {item.TotalSeatCount}
-                    </Text>
+                    </View>
                   </View>
                 </View>
-              </View>
+              </TouchableOpacity>
             )}
           />
         )}
@@ -207,7 +216,6 @@ export default function MovieDetailScreen() {
           <View style={styles.modalContent}>
             <Text style={styles.modalTitle}>날짜 선택</Text>
 
-            {/* 오늘/내일/모레 버튼 */}
             <TouchableOpacity
               style={styles.modalDateButton}
               onPress={() => handleOffsetChange(0)}
@@ -352,7 +360,7 @@ const styles = StyleSheet.create({
   // 모달 관련
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)', // 반투명 배경
+    backgroundColor: 'rgba(0,0,0,0.5)', 
     justifyContent: 'center',
     alignItems: 'center',
   },
