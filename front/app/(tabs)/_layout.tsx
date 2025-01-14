@@ -24,16 +24,27 @@ export default function TabsLayout() {
         options={{
           title: '',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" color={color} size={size} />
+            <Ionicons name="film" color={color} size={size} />
           ),
         }}
       />
-      <Tabs.Screen
+    
+      
+       <Tabs.Screen
+        name="test"
+        options={{
+          title: '',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="wallet" color={color} size={size} />
+          ),
+        }}
+      />
+        <Tabs.Screen
         name="movies"
         options={{
           title: '',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="film" color={color} size={size} />
+            <Ionicons name="game-controller" color={color} size={size} />
           ),
         }}
       />
@@ -42,7 +53,7 @@ export default function TabsLayout() {
         options={{
           title: '',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person" color={color} size={size} />
+            <Ionicons name="chatbox" color={color} size={size} />
           ),
         }}
       />

@@ -88,8 +88,10 @@ export default function MovieDetailScreen() {
         setIsLoading(true);
         const latitude = 37.5561;
         const longitude = 126.9259;
+        //const latitude=37.5291;
+        //const longitude=126.9654;
         const response = await fetch(
-          `http://192.249.29.200:3000/api/theaters?latitude=${latitude}&longitude=${longitude}&movieName=${encodeURIComponent(
+          `http://192.249.29.5:3000/api/theaters?latitude=${latitude}&longitude=${longitude}&movieName=${encodeURIComponent(
             movie.title
           )}&date=${selectedDate}`
         );
@@ -333,7 +335,7 @@ const styles = StyleSheet.create({
   },
   theaterName: {
     fontSize: 14,
-    fontWeight: 'bold',
+    fontWeight: '500',
     color: '#333',
   },
   distance: {
@@ -347,7 +349,7 @@ const styles = StyleSheet.create({
   },
   screenName: {
     fontSize: 12,
-    color: '#333',
+    color: '#666',
   },
   seats: {
     fontSize: 12,

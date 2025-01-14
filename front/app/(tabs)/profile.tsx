@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView,KeyboardAvoidingView } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { 
+  View, 
+  Text, 
+  StyleSheet, 
+  TextInput, 
+  TouchableOpacity, 
+  ScrollView, 
+  KeyboardAvoidingView 
+} from 'react-native';
 import CustomHeader from '@/components/CustomHeader';
 
 export default function ChatbotScreen() {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([
     { role: 'assistant', content: '안녕하세요! 무엇이든 물어보세요' },
-    {role: 'system', content: '너는 영화 전문가야. 영화 추천, 리뷰, 평론, cgv, 롯데시네마, 메가박스 등에 대해 말해.'},
+    { role: 'system', content: '너는 영화 전문가야. 영화 추천, 리뷰, 평론, cgv, 롯데시네마, 메가박스 등에 대해 말해.' },
   ]);
+
+  // ScrollView를 제어하기 위한 ref
+  const scrollViewRef = useRef<ScrollView>(null);
 
   const sendMessage = async () => {
     if (!input.trim()) return;
@@ -22,7 +33,7 @@ export default function ChatbotScreen() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer `, // 키를 직접 삽입
+          Authorization: `Bearer `, 
         },
         body: JSON.stringify({
           model: 'gpt-4o',
@@ -32,36 +43,46 @@ export default function ChatbotScreen() {
 
       const data = await response.json();
       const botMessage = { role: 'assistant', content: data.choices[0].message.content };
-      setMessages([...updatedMessages, botMessage]);
+      setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
       console.error('Error:', error);
       const errorMessage = {
         role: 'assistant',
         content: '죄송합니다, 요청을 처리하는 중 문제가 발생했습니다.',
       };
-      setMessages([...updatedMessages, errorMessage]);
+      setMessages((prev) => [...prev, errorMessage]);
     }
   };
 
   return (
     <View style={styles.container}>
       <CustomHeader title="CINEMACHECK" />
-      <ScrollView style={styles.chatContainer}>
+
+      {/* 채팅 메시지 영역 */}
+      <ScrollView
+        ref={scrollViewRef}
+        style={styles.chatContainer}
+        onContentSizeChange={() => {
+          // 메시지가 추가될 때마다 ScrollView 하단으로 자동 스크롤
+          scrollViewRef.current?.scrollToEnd({ animated: true });
+        }}
+      >
         {messages
-        .filter((message) => message.role !== 'system') // system 메시지 필터링
-        .map((message, index) => (
-          <View
-            key={index}
-            style={[
-              styles.messageBubble,
-              message.role === 'user' ? styles.userBubble : styles.assistantBubble,
-            ]}
-          >
-            <Text style={styles.messageText}>{message.content}</Text>
-          </View>
-        ))}
+          .filter((message) => message.role !== 'system') // system 메시지 필터링
+          .map((message, index) => (
+            <View
+              key={index}
+              style={[
+                styles.messageBubble,
+                message.role === 'user' ? styles.userBubble : styles.assistantBubble,
+              ]}
+            >
+              <Text style={styles.messageText}>{message.content}</Text>
+            </View>
+          ))}
       </ScrollView>
-      
+
+      {/* 입력창 영역 */}
       <View style={styles.centeredInputContainer}>
         <TextInput
           style={styles.textInput}
@@ -78,6 +99,7 @@ export default function ChatbotScreen() {
   );
 }
 
+// 스타일 정의
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -87,6 +109,7 @@ const styles = StyleSheet.create({
   chatContainer: {
     flex: 1,
     paddingHorizontal: 16,
+    marginBottom: 180,
   },
   messageBubble: {
     padding: 12,
@@ -131,7 +154,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   sendButton: {
-    backgroundColor:'#DC143C',
+    backgroundColor: '#DC143C',
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
