@@ -20,7 +20,7 @@ export default function MovieCard({ movie }) {
         <Image source={movie.poster} style={styles.poster} />
       </TouchableOpacity>
       <Text style={styles.title}>
-        {truncateText(movie.title, 6)} {/* 글자수 제한 */}
+        {truncateText(movie.title, 8)} {/* 글자수 제한 */}
       </Text>
     </View>
   );
@@ -28,13 +28,13 @@ export default function MovieCard({ movie }) {
 
 const styles = StyleSheet.create({
   card: {
-    width: 120,
+    width: 160,
     marginRight: 12,
     alignItems: 'center',
   },
   poster: {
     width: '100%',
-    height: 180,
+    height: 240,
     borderRadius: 8,
     marginBottom: 6,
     resizeMode: 'cover',

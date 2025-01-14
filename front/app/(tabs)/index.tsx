@@ -48,8 +48,20 @@ export default function NowPlayingScreen() {
         contentContainerStyle={styles.scrollContent}
         contentInsetAdjustmentBehavior="never" // iOS 안전 영역 여백 제거
       >
-
+           
+           <View style={styles.spacer2} />
         
+
+        <View style={styles.content}>
+          <FlatList
+            data={eventData}
+            horizontal
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => <EventCard event={item} />}
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
+
         <View style={styles.content}>
           <Text style={styles.heading}>상영 중</Text>
           <FlatList
@@ -61,6 +73,7 @@ export default function NowPlayingScreen() {
           />
         </View>
 
+       
         <View style={styles.container}>
           <Text style={styles.heading}>무대인사 일정</Text>
           <FlatList
@@ -71,20 +84,10 @@ export default function NowPlayingScreen() {
             showsHorizontalScrollIndicator={false}
           />
         </View>
-
+        
        
 
 
-        <View style={styles.content}>
-          <Text style={styles.heading}>제휴 할인 이벤트</Text>
-          <FlatList
-            data={eventData}
-            horizontal
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => <EventCard event={item} />}
-            showsHorizontalScrollIndicator={false}
-          />
-        </View>
 
 
             <View style={styles.content}>
@@ -129,4 +132,7 @@ const styles = StyleSheet.create({
   spacer: {
     height: 100, // 빈 공간의 높이 설정
   },
+  spacer2:{
+    height:10,
+  }
 });

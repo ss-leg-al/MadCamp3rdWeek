@@ -1,11 +1,6 @@
-import { View, Text, TouchableOpacity, Image, StyleSheet, Linking } from 'react-native';
+import { View, TouchableOpacity, Image, StyleSheet, Linking } from 'react-native';
 
 export default function EventCard({ event }) {
-  // 글자수 제한 함수
-  const truncateText = (text: string, maxLength: number) => {
-    return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
-  };
-
   // 링크 열기 함수
   const openLink = async (url: string) => {
     const supported = await Linking.canOpenURL(url);
@@ -20,50 +15,30 @@ export default function EventCard({ event }) {
     <TouchableOpacity
       style={styles.card}
       activeOpacity={0.8}
-      onPress={() => openLink(event.url)} // 링크 열기
+      onPress={() => openLink(event.url)} 
     >
       <Image source={event.image} style={styles.image} />
-      <View style={styles.cardContent}>
-        <Text style={styles.title}>{truncateText(event.title, 10)}</Text>
-        <Text style={styles.period}>{event.period}</Text>
-      </View>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
-    width: 170,
+    width: 320,
+    height: 180,          // 카드 높이 지정 (원하는 크기로 조정 가능)
     marginRight: 12,
     backgroundColor: '#fff',
     borderRadius: 12,
+    overflow: 'hidden',   // 모서리 둥근 부분 밖으로 이미지가 튀어나가지 않도록
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 3, // 안드로이드 그림자 효과
+    elevation: 3,         // 안드로이드 그림자
   },
   image: {
     width: '100%',
-    height: 100,
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
-    resizeMode: 'cover',
-  },
-  cardContent: {
-    padding: 10,
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-  period: {
-    fontSize: 14,
-    color: '#666',
-    textAlign: 'center',
+    height: '100%',       // 카드 전체를 이미지로 채움
+    resizeMode: 'cover',  
   },
 });
