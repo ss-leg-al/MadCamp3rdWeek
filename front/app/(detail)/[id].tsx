@@ -10,6 +10,7 @@ import {
   Linking
 } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
+import * as Location from 'expo-location';
 import Header from '@/components/Header';
 
 // 월/일 형식 (예: "1/14")
@@ -77,19 +78,41 @@ export default function MovieDetailScreen() {
 
   const [showDateModal, setShowDateModal] = useState(false);
 
+
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
   // 날짜 라벨 (ex: "1/14(오늘)")
   const headerDateLabel = getDateLabel(selectedOffset);
 
   useEffect(() => {
+    // 1) 위치 권한 요청 + 현재 위치 가져오기
+    (async () => {
+      try {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+          console.warn('위치 권한이 거부되었습니다.');
+          return;
+        }
+        const location = await Location.getCurrentPositionAsync({});
+        setLatitude(location.coords.latitude);
+        setLongitude(location.coords.longitude);
+      } catch (err) {
+        console.error('위치 가져오기 에러:', err);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    // 영화 정보가 "영화 정보 없음"이면 요청 안 함
     if (movie.title === '영화 정보 없음') return;
+
+    // 위치를 아직 못받았다면 대기
+    if (latitude === null || longitude === null) return;
 
     const fetchMovieSchedules = async () => {
       try {
         setIsLoading(true);
-        const latitude = 37.5561;
-        const longitude = 126.9259;
-        //const latitude=37.5291;
-        //const longitude=126.9654;
+
         const response = await fetch(
           `http://192.249.29.5:3000/api/theaters?latitude=${latitude}&longitude=${longitude}&movieName=${encodeURIComponent(
             movie.title
@@ -105,7 +128,8 @@ export default function MovieDetailScreen() {
     };
 
     fetchMovieSchedules();
-  }, [movie.title, selectedDate]);
+  }, [movie.title, selectedDate, latitude, longitude]);
+
 
   // 날짜 변경
   const handleOffsetChange = (offset) => {

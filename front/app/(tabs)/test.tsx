@@ -162,7 +162,7 @@ export default function PhotoCardScreen() {
         <Text style={styles.subText}>아래 가로 스크롤에서 골라보세요</Text>
         <ScrollView horizontal style={styles.horizontalMovieList}>
           {nowPlayingMovies.map((m) => (
-            <View>
+            <View key={m.id} style={{ alignItems: 'center', marginHorizontal: 8 }}z>
             <TouchableOpacity
               key={m.id}
               style={[
@@ -312,7 +312,7 @@ const styles = StyleSheet.create({
   },
   selectedItem: {
     borderWidth: 3,
-    borderColor: 'black',
+    borderColor: '#DC143C',
     borderRadius: 8,
   },
   posterThumb: {
