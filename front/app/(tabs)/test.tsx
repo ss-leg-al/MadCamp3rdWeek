@@ -162,7 +162,7 @@ export default function PhotoCardScreen() {
         <Text style={styles.subText}>아래 가로 스크롤에서 골라보세요</Text>
         <ScrollView horizontal style={styles.horizontalMovieList}>
           {nowPlayingMovies.map((m) => (
-            <View key={m.id} style={{ alignItems: 'center', marginHorizontal: 8 }}z>
+            <View key={m.id} style={{ alignItems: 'center', marginHorizontal: 8 }}>
             <TouchableOpacity
               key={m.id}
               style={[
@@ -302,12 +302,13 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   horizontalMovieList: {
-    marginBottom: 16,
+    marginBottom: 0,
     height: 160, // 옵션
   },
   movieItem: {
     width: 80,
     marginRight: 12,
+    marginBottom: 4,
     alignItems: 'center',
   },
   selectedItem: {

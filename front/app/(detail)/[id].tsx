@@ -49,7 +49,7 @@ const nowPlayingMovies = [
   { id: '5', title: '데드데드 데몬즈 디디디디 디스트럭션: 파트1', poster: require('@/assets/images/5.jpg'),description:'장르 : 애니메이션 / 120 분 \n등급 : 15세이상관람가 \n개봉일 : 2025.01.08\n출연진 : 이쿠타 리라, 아노, 타네자키 아츠미, 시마부쿠로 미유리, 오오키 사에코, 와키 아즈미, 시라이시 료코, 이리노 미유, 우치야마 코우키, 반 타이토, 스와베 준이치, 츠다 켄지로, 카와니시 켄고, 다케나카 나오토' },
   { id: '6', title: '더 폴: 디렉터스 컷', poster: require('@/assets/images/6.jpg'),description:'하이' },
   { id: '7', title: '소방관', poster: require('@/assets/images/7.jpg'),description:'하이' },
-  { id: '8', title: '위키드', poster: require('@/assets/images/8.jpg'),description:'하이' },
+  { id: '8', title: '위키드', poster: require('@/assets/images/8.jpg'),description:'감독 : 존 추 \n장르 : 뮤지컬, 판타지 / 160 분 \n등급 : 전체관람가 \n개봉일 : 2024.11.20 \n출연진 : 아리아나 그란데, 신시아 에리보, 조나단 베일리, 에단 슬레이터, 양자경, 제프 골드브럼' },
   { id: '9', title: '수퍼 소닉3', poster: require('@/assets/images/9.jpg'),description:'하이' },
   { id: '10', title: '뽀로로 극장판 바닷속 대모험', poster: require('@/assets/images/10.jpg'),description:'하이' },
   { id: '11', title: '극장판 짱구는 못말려: 우리들의 공룡일기', poster: require('@/assets/images/11.jpg'),description:'하이' },
@@ -114,7 +114,7 @@ export default function MovieDetailScreen() {
         setIsLoading(true);
 
         const response = await fetch(
-          `http://192.249.29.5:3000/api/theaters?latitude=${latitude}&longitude=${longitude}&movieName=${encodeURIComponent(
+          `http://192.249.29.181:3000/api/theaters?latitude=${latitude}&longitude=${longitude}&movieName=${encodeURIComponent(
             movie.title
           )}&date=${selectedDate}`
         );
