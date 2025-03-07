@@ -2,16 +2,11 @@
 
 ---
 
-![Simulator Screenshot - 13 - 2025-01-15 at 15.56.31.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/9c8442e3-2cae-4517-9bfd-a4d4a1b9f643/Simulator_Screenshot_-_13_-_2025-01-15_at_15.56.31.png)
-
-![Simulator Screenshot - 13 - 2025-01-15 at 15.56.50.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/dd16680f-0f2c-4d1e-bbfd-01a79580c6e7/Simulator_Screenshot_-_13_-_2025-01-15_at_15.56.50.png)
 
 **시작 화면**
 
 - 지도 위에 현재 위치 표기
 - “현재 위치를 확인해주세요” 버튼 → 위치 권한 승인
-
-![Simulator Screenshot - 13 - 2025-01-15 at 15.57.01.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/4652fa82-d29e-43f5-91b5-74a697f37f67/Simulator_Screenshot_-_13_-_2025-01-15_at_15.57.01.png)
 
 **메인화면**
 
@@ -32,20 +27,10 @@
 - 상영시간표 해당 시간 클릭 → 해당 영화사 예매사이트로 이동
 - 데이터베이스의 3일치 정보 저장 → 날짜 변경시 해당 정보 제공
 
-![Simulator Screenshot - 13 - 2025-01-15 at 16.02.51.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/bdbc93b6-0eeb-4270-9a5d-38672de5f712/Simulator_Screenshot_-_13_-_2025-01-15_at_16.02.51.png)
-
-![Simulator Screenshot - 13 - 2025-01-15 at 16.03.08.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/d06e323c-4cf1-43ec-a484-59c33418370a/Simulator_Screenshot_-_13_-_2025-01-15_at_16.03.08.png)
-
-![Simulator Screenshot - 13 - 2025-01-15 at 16.03.18.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/f5634cf0-3675-4c3c-96f5-dd0ec5dc2408/Simulator_Screenshot_-_13_-_2025-01-15_at_16.03.18.png)
-
 **포토카드 만들기**
 
 - 사용자 이름, 관람 일자, 관람 영화, 브랜드 선택
 - 카드 레이아웃에 포스터 + 브랜드 로고 + 관람일자 + 이름을 넣어 포토카드 생성 후 **이미지**로 저장/공유
-
-![Simulator Screenshot - 13 - 2025-01-15 at 16.04.59.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/6606c5e3-1991-452e-a5d5-82f63b11e20c/Simulator_Screenshot_-_13_-_2025-01-15_at_16.04.59.png)
-
-![Simulator Screenshot - 13 - 2025-01-15 at 16.06.09.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/c5f874f8-d33c-404e-96d7-b4deb40a3cb7/Simulator_Screenshot_-_13_-_2025-01-15_at_16.06.09.png)
 
 **상영 영화 미니게임**
 
@@ -53,16 +38,19 @@
 - 카드를 뒤집어가며 같은 포스터를 찾고 완료한 시간에 따라 점수가 부여됨
 - 시간이 초과되거나 게임이 종료되면 랜덤으로 상영 중인 영화를 추천
 
-![Simulator Screenshot - 13 - 2025-01-15 at 16.16.44.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/81095129-7918-461d-8e65-0aab389a1243/Simulator_Screenshot_-_13_-_2025-01-15_at_16.16.44.png)
 
 **영화 전문가 챗봇**
 
 - OpenAI를 이용한 영화 전문가 챗봇
 
-## database
-
----
-
-[화면 기록 2025-01-15 오후 6.04.58.mov](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/f08d0372-283c-4637-a152-fbe4d69f8691/%E1%84%92%E1%85%AA%E1%84%86%E1%85%A7%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9%E1%86%A8_2025-01-15_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_6.04.58.mov)
-
-![스크린샷 2025-01-15 오후 6.04.20.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/f0d14ed7-58c8-400a-b63f-1e5875e88f52/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-01-15_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_6.04.20.png)
+![Image](https://github.com/user-attachments/assets/4bd7cda8-5cb3-485f-985c-c914633e3665)
+![Image](https://github.com/user-attachments/assets/d96448ad-ba80-4cc5-8b0f-3570e82d56cb)
+![Image](https://github.com/user-attachments/assets/a2ae7a13-eada-4e37-807f-ffd15ad1e037)
+![Image](https://github.com/user-attachments/assets/62751cf4-bf37-4a71-a71d-016617464232)
+![Image](https://github.com/user-attachments/assets/b3c0d8d8-972d-4b03-bc8a-2265ab0a9ea1)
+![Image](https://github.com/user-attachments/assets/cd209cd7-37ae-4660-80de-10b2a13bae58)
+![Image](https://github.com/user-attachments/assets/4a0537af-8f2a-4e68-bd35-502218dcd33b)
+![Image](https://github.com/user-attachments/assets/5d89e5fd-de72-4915-a08e-baf2544a548b)
+![Image](https://github.com/user-attachments/assets/b08b0162-9649-4d8f-8db6-0f543e8d597a)
+![Image](https://github.com/user-attachments/assets/f8393b86-29a8-4291-a8f5-8dbec54c365e)
+![Image](https://github.com/user-attachments/assets/0903b630-41d2-4bce-8579-9e2bb8c1c43b)
