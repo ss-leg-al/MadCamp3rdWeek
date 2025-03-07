@@ -14,9 +14,6 @@
 - 무대인사/이벤트 등 다양한 홍보 배너 (예: “CGV 할인 이벤트”)
 - 영화관 3사 바로가기 배너(CGV,메가박스,롯데시네마)
 
-![Simulator Screenshot - 13 - 2025-01-15 at 15.58.16.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/8779e45b-09bd-4ba8-a481-28923c0121e4/Simulator_Screenshot_-_13_-_2025-01-15_at_15.58.16.png)
-
-![Simulator Screenshot - 13 - 2025-01-15 at 16.06.44.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/280bd7f0-f905-4379-8598-9d7f6084447d/Simulator_Screenshot_-_13_-_2025-01-15_at_16.06.44.png)
 
 **영화별 상영시간표**
 
@@ -43,14 +40,14 @@
 
 - OpenAI를 이용한 영화 전문가 챗봇
 
-![Image](https://github.com/user-attachments/assets/4bd7cda8-5cb3-485f-985c-c914633e3665)
-![Image](https://github.com/user-attachments/assets/d96448ad-ba80-4cc5-8b0f-3570e82d56cb)
-![Image](https://github.com/user-attachments/assets/a2ae7a13-eada-4e37-807f-ffd15ad1e037)
-![Image](https://github.com/user-attachments/assets/62751cf4-bf37-4a71-a71d-016617464232)
-![Image](https://github.com/user-attachments/assets/b3c0d8d8-972d-4b03-bc8a-2265ab0a9ea1)
-![Image](https://github.com/user-attachments/assets/cd209cd7-37ae-4660-80de-10b2a13bae58)
-![Image](https://github.com/user-attachments/assets/4a0537af-8f2a-4e68-bd35-502218dcd33b)
-![Image](https://github.com/user-attachments/assets/5d89e5fd-de72-4915-a08e-baf2544a548b)
-![Image](https://github.com/user-attachments/assets/b08b0162-9649-4d8f-8db6-0f543e8d597a)
-![Image](https://github.com/user-attachments/assets/f8393b86-29a8-4291-a8f5-8dbec54c365e)
-![Image](https://github.com/user-attachments/assets/0903b630-41d2-4bce-8579-9e2bb8c1c43b)
+<img src="https://github.com/user-attachments/assets/4bd7cda8-5cb3-485f-985c-c914633e3665" width="100">
+    <img src="https://github.com/user-attachments/assets/d96448ad-ba80-4cc5-8b0f-3570e82d56cb" width="100">
+    <img src="https://github.com/user-attachments/assets/a2ae7a13-eada-4e37-807f-ffd15ad1e037" width="100">
+    <img src="https://github.com/user-attachments/assets/62751cf4-bf37-4a71-a71d-016617464232" width="100">
+    <img src="https://github.com/user-attachments/assets/b3c0d8d8-972d-4b03-bc8a-2265ab0a9ea1" width="100">
+    <img src="https://github.com/user-attachments/assets/cd209cd7-37ae-4660-80de-10b2a13bae58" width="100">
+    <img src="https://github.com/user-attachments/assets/4a0537af-8f2a-4e68-bd35-502218dcd33b" width="100">
+    <img src="https://github.com/user-attachments/assets/5d89e5fd-de72-4915-a08e-baf2544a548b" width="100">
+    <img src="https://github.com/user-attachments/assets/b08b0162-9649-4d8f-8db6-0f543e8d597a" width="100">
+    <img src="https://github.com/user-attachments/assets/f8393b86-29a8-4291-a8f5-8dbec54c365e" width="100">
+    <img src="https://github.com/user-attachments/assets/0903b630-41d2-4bce-8579-9e2bb8c1c43b" width="100">
