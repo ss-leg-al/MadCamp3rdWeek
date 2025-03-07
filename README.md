@@ -1,3 +1,27 @@
+## FE, 이현서
+
+(고려대학교 컴퓨터학과 21학번)
+
+[@ss-leg-al](https://github.com/ss-leg-al)
+
+
+
+## BE, 박규현
+
+(한양대학교 컴퓨터소프트웨어학부 22)
+
+[@Pgyuhyeon](https://github.com/Pgyuhyeon/CinemaCheck)
+
+
+### Tech Stack
+
+---
+
+**프론트엔드** : React-Native, Typescript, expo
+
+**백엔드** : Node.js, Express.js, MongoDB, mongoose, Postman, AWS, Python Crawling
+
+**협업 툴** : Git, Github, Notion
 ### Details
 
 ---
