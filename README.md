@@ -40,14 +40,14 @@
 
 - OpenAI를 이용한 영화 전문가 챗봇
 
-<img src="https://github.com/user-attachments/assets/4bd7cda8-5cb3-485f-985c-c914633e3665" width="100">
-    <img src="https://github.com/user-attachments/assets/d96448ad-ba80-4cc5-8b0f-3570e82d56cb" width="100">
-    <img src="https://github.com/user-attachments/assets/a2ae7a13-eada-4e37-807f-ffd15ad1e037" width="100">
-    <img src="https://github.com/user-attachments/assets/62751cf4-bf37-4a71-a71d-016617464232" width="100">
-    <img src="https://github.com/user-attachments/assets/b3c0d8d8-972d-4b03-bc8a-2265ab0a9ea1" width="100">
-    <img src="https://github.com/user-attachments/assets/cd209cd7-37ae-4660-80de-10b2a13bae58" width="100">
-    <img src="https://github.com/user-attachments/assets/4a0537af-8f2a-4e68-bd35-502218dcd33b" width="100">
-    <img src="https://github.com/user-attachments/assets/5d89e5fd-de72-4915-a08e-baf2544a548b" width="100">
-    <img src="https://github.com/user-attachments/assets/b08b0162-9649-4d8f-8db6-0f543e8d597a" width="100">
-    <img src="https://github.com/user-attachments/assets/f8393b86-29a8-4291-a8f5-8dbec54c365e" width="100">
-    <img src="https://github.com/user-attachments/assets/0903b630-41d2-4bce-8579-9e2bb8c1c43b" width="100">
+<img src="https://github.com/user-attachments/assets/4bd7cda8-5cb3-485f-985c-c914633e3665" width="300">
+    <img src="https://github.com/user-attachments/assets/d96448ad-ba80-4cc5-8b0f-3570e82d56cb" width="300">
+    <img src="https://github.com/user-attachments/assets/a2ae7a13-eada-4e37-807f-ffd15ad1e037" width="300">
+    <img src="https://github.com/user-attachments/assets/62751cf4-bf37-4a71-a71d-016617464232" width="300">
+    <img src="https://github.com/user-attachments/assets/b3c0d8d8-972d-4b03-bc8a-2265ab0a9ea1" width="300">
+    <img src="https://github.com/user-attachments/assets/cd209cd7-37ae-4660-80de-10b2a13bae58" width="300">
+    <img src="https://github.com/user-attachments/assets/4a0537af-8f2a-4e68-bd35-502218dcd33b" width="300">
+    <img src="https://github.com/user-attachments/assets/5d89e5fd-de72-4915-a08e-baf2544a548b" width="300">
+    <img src="https://github.com/user-attachments/assets/b08b0162-9649-4d8f-8db6-0f543e8d597a" width="300">
+    <img src="https://github.com/user-attachments/assets/f8393b86-29a8-4291-a8f5-8dbec54c365e" width="300">
+    <img src="https://github.com/user-attachments/assets/0903b630-41d2-4bce-8579-9e2bb8c1c43b" width="300">
